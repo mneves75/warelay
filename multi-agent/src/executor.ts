@@ -118,7 +118,7 @@ export async function executeAgent(
 
     const proc = spawn("claude", args, {
       env: { ...process.env },
-      stdio: ["pipe", "pipe", "pipe"],
+      stdio: ["ignore", "pipe", "pipe"], // Ignore stdin - Claude CLI doesn't need it for --print
     });
 
     // Set timeout
