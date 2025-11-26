@@ -1,0 +1,30 @@
+{
+  "name": "warelay-multi-agent",
+  "version": "1.0.0",
+  "description": "Multi-agent router for warelay WhatsApp automation",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "warelay-router": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/**/*.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.0.0"
+  }
+}
