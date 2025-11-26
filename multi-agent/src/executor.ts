@@ -101,13 +101,12 @@ export async function executeAgent(
   });
 
   // Build Claude CLI command
+  // Note: Claude CLI doesn't support --max-tokens, max tokens is model-dependent
   const args = [
     "--print", // Print response only
     "--dangerously-skip-permissions", // Required for non-interactive
     "--model",
     getModelFlag(agent.model),
-    "--max-tokens",
-    agent.maxTokens.toString(),
     "--system-prompt",
     systemPrompt,
     cleanMessage,
