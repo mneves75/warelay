@@ -38,6 +38,10 @@ All notable changes to the warelay multi-agent router will be documented in this
   - README with architecture diagram
   - Inline code documentation
 
+### Fixed
+- Removed unsupported `--max-tokens` flag from Claude CLI executor
+- Fixed stdin handling in executor (use `ignore` instead of `pipe`) to prevent CLI hang
+
 ### Technical Details
 - TypeScript with strict mode
 - Node.js 22+ required
