@@ -79,6 +79,7 @@ export type AgentElevatedAllowFromConfig = {
 
 export type WhatsAppActionConfig = {
   reactions?: boolean;
+  sendMessage?: boolean;
 };
 
 export type WhatsAppConfig = {
@@ -234,6 +235,7 @@ export type HooksConfig = {
 
 export type TelegramActionConfig = {
   reactions?: boolean;
+  sendMessage?: boolean;
 };
 
 export type TelegramConfig = {

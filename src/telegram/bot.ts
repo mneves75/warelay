@@ -163,7 +163,7 @@ export function createTelegramBot(opts: TelegramBotOptions) {
       (entry) => entry === username || entry === `@${username}`,
     );
   };
-  const replyToMode = opts.replyToMode ?? cfg.telegram?.replyToMode ?? "off";
+  const replyToMode = opts.replyToMode ?? cfg.telegram?.replyToMode ?? "first";
   const nativeEnabled = cfg.commands?.native === true;
   const nativeDisabledExplicit = cfg.commands?.native === false;
   const useAccessGroups = cfg.commands?.useAccessGroups !== false;
