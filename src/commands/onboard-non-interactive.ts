@@ -33,6 +33,7 @@ import { applyGoogleGeminiModelDefault } from "./google-gemini-model-default.js"
 import { healthCommand } from "./health.js";
 import {
   applyAuthProfileConfig,
+  applyMinimaxApiConfig,
   applyMinimaxConfig,
   applyMinimaxHostedConfig,
   setAnthropicApiKey,
@@ -210,6 +211,8 @@ export async function runNonInteractiveOnboarding(
     nextConfig = applyOpenAICodexModelDefault(nextConfig).next;
   } else if (authChoice === "minimax") {
     nextConfig = applyMinimaxConfig(nextConfig);
+  } else if (authChoice === "minimax-api") {
+    nextConfig = applyMinimaxApiConfig(nextConfig);
   } else if (authChoice === "setup-token" || authChoice === "oauth") {
     if (!process.stdin.isTTY) {
       runtime.error("`claude setup-token` requires an interactive TTY.");

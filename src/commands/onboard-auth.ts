@@ -263,3 +263,57 @@ export function applyMinimaxHostedConfig(
     },
   };
 }
+
+// MiniMax Anthropic-compatible API (platform.minimax.io/anthropic)
+export function applyMinimaxApiConfig(
+  cfg: ClawdbotConfig,
+  modelId: string = "MiniMax-M2.1",
+): ClawdbotConfig {
+  const providers = { ...cfg.models?.providers };
+  providers.minimax = {
+    baseUrl: "https://api.minimax.io/anthropic",
+    apiKey: "", // Resolved via MINIMAX_API_KEY env var or auth profile
+    api: "anthropic-messages",
+    models: [
+      {
+        id: modelId,
+        name: `MiniMax ${modelId}`,
+        reasoning: modelId === "MiniMax-M2",
+        input: ["text"],
+        // Pricing: MiniMax doesn't publish public rates. Override in models.json for accurate costs.
+        cost: { input: 15, output: 60, cacheRead: 2, cacheWrite: 10 },
+        contextWindow: 200000,
+        maxTokens: 8192,
+      },
+    ],
+  };
+
+  const models = { ...cfg.agents?.defaults?.models };
+  models[`minimax/${modelId}`] = {
+    ...models[`minimax/${modelId}`],
+    alias: "Minimax",
+  };
+
+  return {
+    ...cfg,
+    agents: {
+      ...cfg.agents,
+      defaults: {
+        ...cfg.agents?.defaults,
+        models,
+        model: {
+          ...(cfg.agents?.defaults?.model &&
+          "fallbacks" in (cfg.agents.defaults.model as Record<string, unknown>)
+            ? {
+                fallbacks: (
+                  cfg.agents.defaults.model as { fallbacks?: string[] }
+                ).fallbacks,
+              }
+            : undefined),
+          primary: `minimax/${modelId}`,
+        },
+      },
+    },
+    models: { mode: "merge", providers },
+  };
+}
