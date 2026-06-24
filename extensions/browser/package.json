@@ -10,11 +10,11 @@
     "express": "5.2.1",
     "playwright-core": "1.60.0",
     "typebox": "1.1.38",
-    "ws": "8.20.1"
+    "ws": "8.21.0"
   },
   "devDependencies": {
     "@openclaw/plugin-sdk": "workspace:*",
-    "undici": "8.3.0"
+    "undici": "8.5.0"
   },
   "openclaw": {
     "extensions": [
